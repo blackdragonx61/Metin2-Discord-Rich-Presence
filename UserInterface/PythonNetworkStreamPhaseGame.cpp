@@ -6,8 +6,14 @@
 #else
 #pragma comment(lib, "discord_rpc_r.lib")
 #endif
+
 static int64_t StartTime;
-static constexpr auto DiscordClientID = "667352913621942276"; //Change
+/*
+  Create [app id] at here: https://discordapp.com/developers/applications/
+  Tutorial: https://www.youtube.com/watch?v=8fTRxja-jD4
+*/
+static const auto DiscordClientID = "667352913621942276"; // your [app id] here.
+
 void CPythonNetworkStream::Discord_Start()
 {
 	StartTime = time(0);
@@ -16,6 +22,7 @@ void CPythonNetworkStream::Discord_Start()
 	Discord_Initialize(DiscordClientID, &handlers, 1, nullptr);
 	Discord_Update(false);
 }
+
 void CPythonNetworkStream::Discord_Update(const bool ingame)
 {
 	DiscordRichPresence discordPresence;
@@ -25,10 +32,11 @@ void CPythonNetworkStream::Discord_Update(const bool ingame)
 		discordPresence.details = CPythonPlayer::Instance().GetName();
 	}
 	discordPresence.startTimestamp = StartTime;
-	discordPresence.largeImageKey = "image1";
-	discordPresence.largeImageText = "Metin2";
+	discordPresence.largeImageKey = "image1"; //Change
+	discordPresence.largeImageText = "Metin2"; //Change
 	Discord_UpdatePresence(&discordPresence);
 }
+
 void CPythonNetworkStream::Discord_Close()
 {
 	Discord_Shutdown();
