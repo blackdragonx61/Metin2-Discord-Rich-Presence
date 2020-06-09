@@ -11,7 +11,7 @@
 ![](https://puu.sh/F0UBK/5c56c9a9a0.png)
 
 
-**Change PythonNetworkStreamPhaseGame.cpp/DiscordClientID:**
+**Change Discord.h/DiscordClientID:**
 
 ![](https://puu.sh/F0UFr/4416478022.png)
 
