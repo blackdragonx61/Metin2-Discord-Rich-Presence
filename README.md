@@ -1,6 +1,8 @@
 # Metin2-Discord-Rich-Presence
 **Created by blackdragonx61**
 
+![](https://puu.sh/FUxhd/65c5f27c8a.png)
+
 [![](https://img.youtube.com/vi/ujImzO59ed0/sddefault.jpg)](https://youtu.be/ujImzO59ed0)
 [![](https://img.youtube.com/vi/8fTRxja-jD4/sddefault.jpg)](https://youtu.be/8fTRxja-jD4)
 
