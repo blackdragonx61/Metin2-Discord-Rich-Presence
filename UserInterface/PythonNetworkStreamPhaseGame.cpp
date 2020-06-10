@@ -26,7 +26,6 @@ void CPythonNetworkStream::Discord_Update(const bool ingame)
 		Discord_UpdatePresence(&discordPresence);
 		return;
 	}
-	Discord::DiscordClientID;
 
 	/*Name*/
 	auto NameData = Discord::GetNameData();
