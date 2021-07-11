@@ -1,3 +1,8 @@
+/*
+* blackdragonx61
+* Mali
+*/
+
 #pragma once
 #include "StdAfx.h"
 #include "PythonCharacterManager.h"
@@ -7,24 +12,25 @@
 
 namespace Discord
 {
-	const auto DiscordClientID = "667352913621942276";
+	inline constexpr auto DiscordClientID = "667352913621942276";
 
 	using DCDATA = std::pair<std::string, std::string>;
+	
 
 	/*NAME*/
-	DCDATA GetNameData()
+	inline DCDATA GetNameData()
 	{
 		/*Map Name*/
 		auto WarpName = std::string(CPythonBackground::Instance().GetWarpMapName());
 
 		//atlasinfo.txt
-		static const std::map<std::string, std::string> DCmapname {
+		static const std::map<std::string, std::string> m_MapName {
 			{ "metin2_map_a1", "Yongan" },
 			{ "metin2_map_b1", "Joan" },
 			{ "metin2_map_c1", "Pyungmoo" },
 		};
 
-		auto MapName = "Location: " + (DCmapname.count(WarpName) ? DCmapname.at(WarpName) : WarpName);
+		auto MapName = "Location: " + (m_MapName.count(WarpName) ? m_MapName.at(WarpName) : WarpName);
 
 		/*CH Name*/
 		auto CHName = "Name: " + std::string(CPythonPlayer::Instance().GetName());
@@ -36,7 +42,7 @@ namespace Discord
 	}
 
 	/*RACE*/
-	DCDATA GetRaceData()
+	inline DCDATA GetRaceData()
 	{
 		auto pInstance = CPythonCharacterManager::Instance().GetMainInstancePtr();
 		if (!pInstance)
@@ -72,7 +78,7 @@ namespace Discord
 	}
 
 	/*EMPIRE*/
-	DCDATA GetEmpireData()
+	inline DCDATA GetEmpireData()
 	{
 		auto pInstance = CPythonCharacterManager::Instance().GetMainInstancePtr();
 		if (!pInstance)
