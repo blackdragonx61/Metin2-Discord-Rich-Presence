@@ -12,7 +12,7 @@
 
 namespace Discord
 {
-	inline constexpr auto DiscordClientID = "667352913621942276";
+	constexpr auto DiscordClientID = "667352913621942276";
 
 	using DCDATA = std::pair<std::string, std::string>;
 
@@ -29,19 +29,19 @@ namespace Discord
 			{ "metin2_map_c1", "Pyungmoo" },
 		};
 
-		auto MapName = "Location: " + (m_MapName.count(WarpName) ? m_MapName.at(WarpName) : WarpName);
+		auto sMapName = "Location: " + (m_MapName.count(WarpName) ? m_MapName.at(WarpName) : WarpName);
 
 		/*CH Name*/
-		auto CHName = "Name: " + std::string(CPythonPlayer::Instance().GetName());
+		auto sCharacterName = "Name: " + std::string(CPythonPlayer::Instance().GetName());
 #if 0
 		std::string GuildName;
 		if (CPythonGuild::Instance().GetGuildName(CPythonPlayer::Instance().GetGuildID(), &GuildName))
-			CHName += "-Guild: " + GuildName;
+			sCharacterName += "-Guild: " + GuildName;
 #else
-		CHName += "-Level: " + std::to_string(CPythonPlayer::Instance().GetStatus(POINT_LEVEL));
+		sCharacterName += " (Lv." + std::to_string(CPythonPlayer::Instance().GetStatus(POINT_LEVEL)) + ")";
 #endif
 
-		return { MapName, CHName };
+		return { sMapName, sCharacterName };
 	}
 
 	/*RACE*/
@@ -51,15 +51,20 @@ namespace Discord
 		if (!pInstance)
 			return { "","" };
 
-		auto RACENUM = pInstance->GetRace();
-
+		/*Race*/
+		const auto RACENUM = pInstance->GetRace();
+		
 		/*Image*/
 		auto RaceImage = "race_" + std::to_string(RACENUM);
 
 		/*Name*/
-		auto RaceName = "Warrior";
+		auto RaceName = "";
 		switch (RACENUM)
 		{
+		case NRaceData::JOB_WARRIOR:
+		case NRaceData::JOB_WARRIOR + 4:
+			RaceName = "Warrior";
+			break;
 		case NRaceData::JOB_ASSASSIN:
 		case NRaceData::JOB_ASSASSIN + 4:
 			RaceName = "Assassin";
@@ -73,7 +78,7 @@ namespace Discord
 			RaceName = "Shaman";
 			break;
 #if defined(ENABLE_WOLFMAN_CHARACTER)
-		case NRaceData::JOB_WOLFMAN:
+		case NRaceData::JOB_WOLFMAN + 4:
 			RaceName = "Lycan";
 #endif
 		}
@@ -87,15 +92,18 @@ namespace Discord
 		if (!pInstance)
 			return { "","" };
 
-		auto EmpireID = pInstance->GetEmpireID();
+		const auto EmpireID = pInstance->GetEmpireID();
 
 		/*Image*/
 		auto EmpireImage = "empire_" + std::to_string(EmpireID);
 
 		/*Name*/
-		auto EmpireName = "Shinsoo";
+		auto EmpireName = "";
 		switch (EmpireID)
 		{
+		case 1:
+			EmpireName = "Shinsoo";
+			break;
 		case 2:
 			EmpireName = "Chunjo";
 			break;
