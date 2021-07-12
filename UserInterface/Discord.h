@@ -15,7 +15,6 @@ namespace Discord
 	inline constexpr auto DiscordClientID = "667352913621942276";
 
 	using DCDATA = std::pair<std::string, std::string>;
-	
 
 	/*NAME*/
 	inline DCDATA GetNameData()
@@ -34,9 +33,13 @@ namespace Discord
 
 		/*CH Name*/
 		auto CHName = "Name: " + std::string(CPythonPlayer::Instance().GetName());
+#if 0
 		std::string GuildName;
 		if (CPythonGuild::Instance().GetGuildName(CPythonPlayer::Instance().GetGuildID(), &GuildName))
 			CHName += "-Guild: " + GuildName;
+#else
+		CHName += "-Level: " + std::to_string(CPythonPlayer::Instance().GetStatus(POINT_LEVEL));
+#endif
 
 		return { MapName, CHName };
 	}
